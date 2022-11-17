@@ -96,5 +96,33 @@ docker build -t dockerapp:v1 .
 ```
 <img width="718" alt="image" src="https://user-images.githubusercontent.com/63963025/202479691-b019d5b9-6168-4c8f-8b56-5cf61bb84740.png">
 
+- Check image is been created or not. 
+```
+docker images
+```
+<img width="558" alt="image" src="https://user-images.githubusercontent.com/63963025/202479977-3e86ad38-1b94-4890-886d-83095dc72201.png">
 
+### Step 4 Test the image 
 
+- Before upload image in S3 Bucket. check the container is working or not.
+
+- Create a container <b>-d</b> is detach mode where your container will be run in background. <b>-it</b> interactive terminal and we have done here port mapping we have expose our application at 5000 and our docker is running at 80 port number we have map our ec2 port number at 5000. 
+```
+docker run -d -it -p <host-port>:<container-port> <image-name>:<version-name or tag-name>
+```
+- example
+```
+docker run -d -it -p 5000:80 dockerapp:v1 
+```
+- Docker check running container docker ps 
+<img width="1286" alt="image" src="https://user-images.githubusercontent.com/63963025/202483928-8be6bb7d-d3e8-4143-bb19-20d9ffa2bc25.png">
+
+- We have to change in our Ec2 security group. Go to Ec2 machine --> Security --> Security Group change inbound rule 
+<img width="1331" alt="image" src="https://user-images.githubusercontent.com/63963025/202485319-ce5b5238-33a9-452f-ae51-f9362162ca39.png">
+
+- Here we go 
+<img width="473" alt="image" src="https://user-images.githubusercontent.com/63963025/202485446-0611a98a-c1ed-488d-ae7d-18efa4f30216.png">
+
+- Lets share this image to testing team using S3 bucket 
+
+### Step 5 
