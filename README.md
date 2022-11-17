@@ -114,7 +114,7 @@ docker run -d -it -p <host-port>:<container-port> <image-name>:<version-name or 
 ```
 docker run -d -it -p 5000:80 dockerapp:v1 
 ```
-- Docker check running container docker ps 
+- Docker check running container docker ps.
 <img width="1286" alt="image" src="https://user-images.githubusercontent.com/63963025/202483928-8be6bb7d-d3e8-4143-bb19-20d9ffa2bc25.png">
 
 - We have to change in our Ec2 security group. Go to Ec2 machine --> Security --> Security Group change inbound rule 
@@ -125,4 +125,6 @@ docker run -d -it -p 5000:80 dockerapp:v1
 
 - Lets share this image to testing team using S3 bucket 
 
-### Step 5 
+### Step 5 Create Test server and install Docker
+
+- Create test server. 
