@@ -128,3 +128,77 @@ docker run -d -it -p 5000:80 dockerapp:v1
 ### Step 5 Create Test server and install Docker
 
 - Create test server. 
+<img width="1167" alt="image" src="https://user-images.githubusercontent.com/63963025/202692986-186dd677-e121-42f5-971f-54fd4cfbf521.png">
+
+- Use below command to install <b>Docker</b>.
+- This command will update machine. 
+```
+sudo yum update -y 
+```
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/63963025/202471162-d7fd0809-e249-488a-8543-ad5cfbf4c449.png">
+
+- This command will install Docker.
+```
+sudo yum install docker -y 
+```
+<img width="1428" alt="image" src="https://user-images.githubusercontent.com/63963025/202471793-d744d33d-5f1b-4bea-b9fe-278ee289ffd0.png">
+
+- Now lets give docker as root privileges sudo power. In y case i am using Amazon linux 2 AMI if you are using different kind of OS you can use that username more information go through this document - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html
+```
+sudo usermod -aG docker ec2-user
+```
+
+- As we have given Docker as a sudo power restart the service using this command given below. 
+```
+ sudo systemctl restart docker 
+```
+- Check the status of Docker 
+```
+ sudo systemctl status docker 
+```
+<img width="1423" alt="image" src="https://user-images.githubusercontent.com/63963025/202474701-f53a757d-b9c4-4e32-ae7d-10c8d3687b12.png">
+
+- Our service is up and running. 
+
+### Step 6 Create S3 Bucket 
+
+- Create S3 Bucket in ap-south-1 (Mumbai) region.
+<img width="1105" alt="image" src="https://user-images.githubusercontent.com/63963025/202693757-c44ebb80-b0e2-49b5-a5f0-71afa7a6ca45.png">
+
+### Step 7 Assign Role for Ec2 machine 
+
+- Go to IAM --> Create Role. 
+<img width="1075" alt="image" src="https://user-images.githubusercontent.com/63963025/202694301-d22492d6-c4f3-468b-9b62-6c64018625a8.png">
+
+- Trusted entity type select <b>AWS service</b>.
+<img width="825" alt="image" src="https://user-images.githubusercontent.com/63963025/202694507-1328ef88-a202-4e9a-9c5f-b1331fe4374e.png">
+
+- Use case Ec2 select Next.
+<img width="911" alt="image" src="https://user-images.githubusercontent.com/63963025/202694558-b3fe845b-0a01-4e49-95f1-4a59ec557f08.png">
+
+- Name Role Ec2-S3-Role create role.
+<img width="1021" alt="image" src="https://user-images.githubusercontent.com/63963025/202696606-c67a09c8-4c56-498a-99cc-8361615bc023.png">
+
+- Go to Ec2 vm Action --> Security --> Modify IAM Role --> Attach Role that you have created <b>Ec2-S3-role</b>
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/63963025/202697079-7d1b4d28-9afa-4f53-913b-7aa8d6bd4426.png">
+
+<img width="827" alt="image" src="https://user-images.githubusercontent.com/63963025/202697267-6b87dc73-3a3c-4734-bafd-6668c2101c2e.png">
+
+
+## Why we have assign IAM Role to Ec2 Machine? 
+We want authentication betwenn S3 and Ec2 Instance so we have 2 method also creating user and configure aws profile but <b>this is not best practice</b>. That's why we are using Role to authenticate between resources. In GCP if we want to authentication between resources we use service account there. 
+
+More to know about role:- https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html </br>
+More to know about Service account:- https://cloud.google.com/iam/docs/service-accounts
+
+- Same assign the IAM Role to Test server 
+
+### Step 8 Push your image to S3 Bucket 
+
+- In this process we are going to make rar file of image. Before pushing image to S3 where your image is been store let's have look 
+
+- Go to this file location 
+```
+
+```
+
