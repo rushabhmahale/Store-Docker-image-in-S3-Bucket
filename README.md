@@ -5,6 +5,9 @@ Docker is an open platform for developing, shipping, and running applications. D
 
 Refer this document:- https://docs.docker.com/get-started/overview/
 
+## Architecture Diagram 
+![docker-s3 drawio (1)](https://user-images.githubusercontent.com/63963025/202839651-5b5b207e-e772-4a95-b36c-151628cf27dc.png)
+
 ## What is Containers in Docker? 
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings. Container images become containers at runtime and in the case of Docker containers images become containers when they run on Docker Engine.
 
