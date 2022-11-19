@@ -233,4 +233,57 @@ Refer this document:- https://docs.docker.com/engine/reference/commandline/save/
 aws s3 cp <rar-file or any file/folder> s3://<S3BucketName>
 ```
 - Example
+```
+aws s3 cp dockerapp.rar s3://docker-s3953
+```
+- This command will help you to list your bucket object.
+```
+aws s3 ls s3://docker-s3953
+```
 <img width="626" alt="image" src="https://user-images.githubusercontent.com/63963025/202837706-df8c66ec-0406-45e4-ab87-6360ce5abcf6.png">
+
+- You can seee here we have successfully uploaded object in bucket. 
+<img width="1077" alt="image" src="https://user-images.githubusercontent.com/63963025/202838387-74b362f8-c081-4b9a-984d-34944a5eae09.png">
+
+### Step 10 we will call the object to test-server 
+- Go to Test-server check if there is image available or not. 
+```
+docker images
+```
+<img width="439" alt="image" src="https://user-images.githubusercontent.com/63963025/202838511-3fd70658-0347-456a-948d-5372a2dbab03.png">
+
+- Lets call object in the test-server. 
+- Syntax 
+```
+aws s3 cp  <s3://BUCKET_NAME/FOLDER/OBJECT> <YOUR PATH WHERE YOU WANT TO SAVE YOUR OBJECT>
+```
+- Example
+```
+aws s3 cp  s3://docker-s3953/dockerapp.rar /home/ec2-user
+```
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/63963025/202838738-927496ca-24ac-4a9f-9008-bdf2bd309c1c.png">
+
+- Image is in layer form. We will load the image.
+ <img width="915" alt="image" src="https://user-images.githubusercontent.com/63963025/202838869-85a60b75-a3e0-4952-a9dc-d91d938e9b45.png">
+ 
+- Here we go 
+<img width="540" alt="image" src="https://user-images.githubusercontent.com/63963025/202838931-df544422-1173-41f7-bb04-e1fdf3c7257a.png">
+
+### Step 11 run the container for testing 
+
+- Let's test our application is working or not. 
+```
+docker run -dit -p 8080:80 dockerapp:v1 
+```
+<img width="1272" alt="image" src="https://user-images.githubusercontent.com/63963025/202839008-04cb9356-ba8c-48be-b3aa-442c5c8b6c5b.png">
+
+- Make sure you have change security group if you are not able to access.
+<img width="1329" alt="image" src="https://user-images.githubusercontent.com/63963025/202839063-7830f647-8421-4f68-a62d-335dd6f82f72.png">
+
+- Here we are
+<img width="425" alt="image" src="https://user-images.githubusercontent.com/63963025/202839075-f9d84a0b-44f1-4dae-bd62-42b81f59b70f.png">
+
+## What is Dangling images? 
+Dangling images are untagged Docker images that aren't used by a container or depended on by a descendant. They usually serve no purpose but still consume disk space.
+
+Refer this document:- https://docs.docker.com/engine/reference/commandline/image_prune/
