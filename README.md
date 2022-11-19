@@ -193,12 +193,44 @@ More to know about Service account:- https://cloud.google.com/iam/docs/service-a
 
 - Same assign the IAM Role to Test server 
 
-### Step 8 Push your image to S3 Bucket 
+### Step 8 Create rar file
 
-- In this process we are going to make rar file of image. Before pushing image to S3 where your image is been store let's have look 
+- In this process we are going to make rar file of image. Before pushing image to S3 where your image is been store let's have look. 
 
-- Go to this file location 
+- Go to this file location in root location. 
+```
+cd /var/lib/docker 
 ```
 
+- Your image is been stored in this location <b>overlay2</b> directory.
+<img width="1244" alt="image" src="https://user-images.githubusercontent.com/63963025/202836940-1ca50d30-5a9b-4e52-b4f3-bfe9fa097a9c.png">
+
+- Image are store in layer form.
+
+- Lets create package of image. This command will show all the image you are having.
+```
+docker images
 ```
 
+- We will create rar file of image. (-o) means output save command will help you to save the image in rar format. 
+- Syntax
+```
+docker save -o <save-your-rar-filename> <docker-image that you have created>:<version-tags> 
+```
+- Example
+```
+docker save -o dockerapp.rar dockerapp:v1 
+```
+<img width="637" alt="image" src="https://user-images.githubusercontent.com/63963025/202837169-e1521376-da83-4501-8b2e-26fba9cd1d36.png">
+
+Refer this document:- https://docs.docker.com/engine/reference/commandline/save/
+
+### Step 9  Push your image to S3 Bucket 
+
+- We upload this rar file in the S3 Bucket. To copy the files from EC2 to S3.
+- Syntax
+```
+aws s3 cp <rar-file or any file/folder> s3://<S3BucketName>
+```
+- Example
+<img width="626" alt="image" src="https://user-images.githubusercontent.com/63963025/202837706-df8c66ec-0406-45e4-ab87-6360ce5abcf6.png">
