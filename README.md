@@ -266,7 +266,11 @@ aws s3 cp  s3://docker-s3953/dockerapp.rar /home/ec2-user
 ```
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/63963025/202838738-927496ca-24ac-4a9f-9008-bdf2bd309c1c.png">
 
-- Image is in layer form. We will load the image.
+- Image is in layer form. We will load the image. Using this command 
+```
+docker load -i myapp.rar
+```
+
  <img width="915" alt="image" src="https://user-images.githubusercontent.com/63963025/202838869-85a60b75-a3e0-4952-a9dc-d91d938e9b45.png">
  
 - Here we go 
